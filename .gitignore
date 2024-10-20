@@ -3,3 +3,5 @@
 
 # Ignore frontend environment file
 /frontend/.env
+
+.env
