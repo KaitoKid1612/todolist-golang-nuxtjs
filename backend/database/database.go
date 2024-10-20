@@ -26,7 +26,7 @@ func SetupDB() {
 	}
 
 	// Thêm Project vào AutoMigrate để tạo bảng project
-	err = DB.AutoMigrate(&domain.User{}, &domain.Role{}, &domain.Task{}, &domain.Project{})
+	err = DB.AutoMigrate(&domain.User{}, &domain.Role{}, &domain.Task{}, &domain.Project{}, &domain.Permission{}, &domain.RolePermission{})
 	if err != nil {
 		log.Fatalf("Failed to run migrations: %v", err)
 	}
