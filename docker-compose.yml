@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./todolist-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    env_file:
+      - todolist-backend/.env
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./todolist-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./todolist-frontend/.env
+
+  db:
+    image: postgres:latest
+    env_file:
+      - ./todolist-backend/.env
+    environment:
+      POSTGRES_USER: kaito
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: todolist
+    ports:
+      - "5432:5432"
