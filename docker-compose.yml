@@ -1,18 +1,45 @@
-version: '3.8'
 
+version: '3.9'
 services:
-  backend:
+  app:
+    container_name: todolist-be
+    environment:
+      - POSTGRES_USER=kaito
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=todolist
+      - DATABASE_HOST=postgresdb
+      - DATABASE_PORT=5432
+    tty: true
     build:
       context: ./todolist-backend
-      dockerfile: Dockerfile
     ports:
-      - "8080:8080"
-    env_file:
-      - todolist-backend/.env
+      - 8000:8080
+    restart: on-failure
+
+    volumes:
+      - .:/app
     depends_on:
-      - db
+      - postgresdb
+    networks:
+      - todolist
+
+  postgresdb:
+    image: postgres:latest
+    container_name: todolist-db
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - DATABASE_HOST=${DB_HOST}
+    ports:
+      - '1234:5432'
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    networks:
+      - todolist
 
   frontend:
+    container_name: todolist-fe
     build:
       context: ./todolist-frontend
       dockerfile: Dockerfile
@@ -20,14 +47,13 @@ services:
       - "3000:3000"
     env_file:
       - ./todolist-frontend/.env
+    networks:
+      - todolist
 
-  db:
-    image: postgres:latest
-    env_file:
-      - ./todolist-backend/.env
-    environment:
-      POSTGRES_USER: kaito
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: todolist
-    ports:
-      - "5432:5432"
+volumes:
+  pg_data:
+
+# Networks to be created to facilitate communication between containers
+networks:
+  todolist:
+    driver: bridge
