@@ -1,6 +1,8 @@
-package models
+package domain
 
-import "time"
+import (
+	"time"
+)
 
 type Task struct {
 	ID          uint      `gorm:"primaryKey"`

@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"os"
-	"todolist-backend/models"
+	"todolist-backend/internal/domain"
 )
 
 var DB *gorm.DB
@@ -26,7 +26,7 @@ func SetupDB() {
 	}
 
 	// Thêm Project vào AutoMigrate để tạo bảng project
-	err = DB.AutoMigrate(&models.User{}, &models.Role{}, &models.Task{}, &models.Project{})
+	err = DB.AutoMigrate(&domain.User{}, &domain.Role{}, &domain.Task{}, &domain.Project{})
 	if err != nil {
 		log.Fatalf("Failed to run migrations: %v", err)
 	}

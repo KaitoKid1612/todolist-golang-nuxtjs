@@ -41,8 +41,8 @@ The **To-Do List Application** is a full-stack web project designed to manage ta
 ### Backend Setup
 1. Clone the repository and navigate to the backend directory:
     ```bash
-    git clone https://github.com/yourusername/todo-list-go-vuejs.git
-    cd todo-list-go-vuejs/backend
+    git clone https://github.com/KaitoKid1612/todolist-golang-nuxtjs.git
+    cd todolist-golang-nuxtjs/backend
     ```
 2. Install dependencies:
     ```bash
