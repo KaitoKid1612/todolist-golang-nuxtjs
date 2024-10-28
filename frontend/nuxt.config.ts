@@ -1,5 +1,3 @@
-import { defineNuxtConfig } from "nuxt/config";
-
 export default defineNuxtConfig({
     css: [
         'vuetify/styles',
@@ -12,3 +10,8 @@ export default defineNuxtConfig({
         strict: true
     }
 })
+
+function defineNuxtConfig(config: { css: string[]; build: { transpile: string[]; }; typescript: { strict: boolean; }; }) {
+    return config;
+}
+
