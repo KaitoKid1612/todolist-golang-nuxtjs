@@ -4,7 +4,7 @@ export default defineNuxtConfig({
         '@/assets/css/tailwind.css'
     ],
     build: {
-        transpile: ['vuetify']
+        transpile: ['@nuxt/vite-builder']
     },
     typescript: {
         strict: true
