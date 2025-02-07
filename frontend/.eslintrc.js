@@ -10,7 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
-  plugins: ['prettier'],
+  plugins: ['vue', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
   },
