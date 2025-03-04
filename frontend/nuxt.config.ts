@@ -3,6 +3,7 @@ export default defineNuxtConfig({
         'vuetify/styles',
         '@/assets/css/tailwind.css'
     ],
+    modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt'],
     build: {
         transpile: ['@nuxt/vite-builder']
     },
